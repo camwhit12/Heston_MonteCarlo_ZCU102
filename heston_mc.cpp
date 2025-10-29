@@ -14,8 +14,11 @@ void rng_box_muller(
     
     // Convert to [0,1]
     // MT generates 32-bit integers, normalize to (0,1)
-    data_t u1 = data_t(u1_int) / data_t(4294967295U);
-    data_t u2 = data_t(u2_int) / data_t(4294967295U);
+    double u1_tmp = (double)u1_int / 4294967295.0;
+    double u2_tmp = (double)u2_int / 4294967295.0;
+
+    data_t u1 = (data_t)u1_tmp;
+    data_t u2 = (data_t)u2_tmp; 
     
     // Ensure u1 > 0 to avoid log(0)
     if (u1 < data_t(0.000001)) u1 = data_t(0.000001);
